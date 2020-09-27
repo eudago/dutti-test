@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ShipPagination } from 'src/app/interfaces/ship';
 
 import { ShipsService } from './ships.service';
@@ -12,12 +13,13 @@ export class ShipsComponent implements OnInit {
 
   shipsPagination: ShipPagination;
 
-  constructor(private shipsService: ShipsService) { }
+  constructor(
+    private shipsService: ShipsService,   
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.shipsService.getStarships().subscribe((r: ShipPagination) => {
-      this.shipsPagination = r;
-    })
+    this.shipsPagination = this.route.snapshot.data.starships;
   }
 
 }
