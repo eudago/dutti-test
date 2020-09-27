@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { resolve } from 'dns';
 import { User } from 'src/app/interfaces/user';
 
 @Injectable({
