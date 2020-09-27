@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ImageErrorDirective } from './directives/image-error.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ImageErrorDirective
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -15,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageErrorDirective
   ]
 })
 export class SharedModule { }
