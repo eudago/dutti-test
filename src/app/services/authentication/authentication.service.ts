@@ -16,6 +16,10 @@ export class AuthenticationService {
 
   constructor(private usersService: UsersService) { }
 
+  getAuthData() {
+    return this.currentUser && this.currentUser.authdata ? this.currentUser.authdata: null;
+  }
+
   login(username: string, password: string): Promise<Response> {
     return this.usersService.getByUsername(username)
     .then((user: User) => {
