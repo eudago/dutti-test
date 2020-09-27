@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ShipPagination } from 'src/app/interfaces/ship';
+
+import { ShipsService } from './ships.service';
 
 @Component({
   selector: 'app-ships',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShipsComponent implements OnInit {
 
-  constructor() { }
+  shipsPagination: ShipPagination;
+
+  constructor(private shipsService: ShipsService) { }
 
   ngOnInit(): void {
+    this.shipsService.getStarships().subscribe((r: ShipPagination) => {
+      this.shipsPagination = r;
+    })
   }
 
 }
