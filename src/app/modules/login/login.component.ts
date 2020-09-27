@@ -22,14 +22,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('login');
     this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password)
     .then((response) => {
-      this.authenticationService.setCredentials(this.loginForm.value.username, this.loginForm.value.password);
-      this.router.navigate(['/']);
-    })
-    .catch((err) => {
-      //TODO: show error message
+      if (response.success) {
+        this.authenticationService.setCredentials(this.loginForm.value.username, this.loginForm.value.password);
+        this.router.navigate(['/']);  
+      }
+      else {
+        //TODO: show error message
+      }
     })
   }
 
