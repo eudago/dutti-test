@@ -8,12 +8,14 @@ import { StarshipsListComponent } from './components/starships-list/starships-li
 import { StarshipComponent } from './components/starship/starship.component';
 import { StarshipDetailComponent } from './components/starship-detail/starship-detail.component';
 import { StarshipsResolver } from './resolves/starships.resolve';
+import { StarshipResolver } from './resolves/starship.resolve';
 
 @NgModule({
   declarations: [
     ShipsComponent, 
     StarshipsListComponent, 
     StarshipComponent, 
+    StarshipDetailComponent
   ],
   imports: [
     SharedModule,
@@ -22,7 +24,8 @@ import { StarshipsResolver } from './resolves/starships.resolve';
   ],
   providers: [
     ShipsService,
-    StarshipsResolver
+    StarshipsResolver,
+    StarshipResolver
   ]
 })
 export class ShipsModule { }
