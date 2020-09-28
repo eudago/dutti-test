@@ -7,11 +7,13 @@ import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { MenuComponent } from './components/menu/menu.component';
+import { LoggedDirective } from './directives/authenticated.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    LoggedDirective,
   ],
   imports: [
     BrowserModule,
