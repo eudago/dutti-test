@@ -4,20 +4,23 @@ import { Base64 } from 'src/app/utils/base64';
 import { UsersService } from '../users/users.service';
 import { Response } from '../../interfaces/response';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  currentUser$ = new BehaviorSubject(null);
-
   currentUser: {
     username: String,
     authdata: String
-  };
+  } = this.cookieService.get("auth") ? JSON.parse(this.cookieService.get("auth")) : null;
 
-  constructor(private usersService: UsersService) { }
+  currentUser$ = new BehaviorSubject(this.currentUser);
+
+  constructor(private usersService: UsersService, private cookieService: CookieService) { 
+
+  }
 
   getCurrentUSer(): Observable<any> {
     return this.currentUser$.asObservable();
@@ -54,10 +57,9 @@ export class AuthenticationService {
 
     this.currentUser$.next(this.currentUser);
 
-    //TODO: save cookieExp
-    //const cookieExp = new Date();
-    //cookieExp.setDate(cookieExp.getDate() + 7);
-    //$cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+    const cookieExp = new Date();
+    cookieExp.setDate(cookieExp.getDate() + 7);
+    this.cookieService.set('auth', JSON.stringify(this.currentUser),  cookieExp);
   }
 
   clearCredentials() {
@@ -66,5 +68,6 @@ export class AuthenticationService {
       authdata: ''
     }
     this.currentUser$.next(this.currentUser);
+    this.cookieService.delete('auth');
   }
 }

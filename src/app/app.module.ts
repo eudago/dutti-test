@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoggedDirective } from './directives/authenticated.directive';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoggedDirective } from './directives/authenticated.directive';
     SharedModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
