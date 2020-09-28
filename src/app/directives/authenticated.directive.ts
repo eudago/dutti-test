@@ -14,7 +14,7 @@ export class LoggedDirective implements OnDestroy {
     public viewContainerRef: ViewContainerRef,
     private authenticationService: AuthenticationService
   ) { 
-    this.userSub$ = this.authenticationService.getCurrentUSer().subscribe((user) => {
+    this.userSub$ = this.authenticationService.getCurrentUser().subscribe((user) => {
         if(user && user.authdata) {
           this.viewContainerRef.clear();
           this.viewContainerRef.createEmbeddedView(this.templateRef);
