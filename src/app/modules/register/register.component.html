@@ -1,27 +1,33 @@
-<h2>Register</h2>
+<div class="container">
+    <h2>Register</h2>
 
-<form [formGroup]="registerForm" (ngSubmit)="register()">
-    <label>
-        First name
-        <input type="text" formControlName="firstName">
-    </label>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <label>
+            First name
+            <input type="text" formControlName="firstName">
+        </label>
+    
+        <label>
+            Last name
+            <input type="text" formControlName="lastName">
+        </label>
+    
+        <label>
+            Username
+            <input type="email" formControlName="username">
+        </label>
+    
+        <label>
+            Password
+            <input type="password" formControlName="password">
+        </label>
+    
+        <button [disabled]="!registerForm.valid" type="submit">
+            Register
+        </button>
 
-    <label>
-        Last name
-        <input type="text" formControlName="lastName">
-    </label>
-
-    <label>
-        Username
-        <input type="email" formControlName="username">
-    </label>
-
-    <label>
-        Password
-        <input type="password" formControlName="password">
-    </label>
-
-    <button [disabled]="!registerForm.valid" type="submit">
-        Register
-    </button>
-</form>
+        <button routerLink="/login">
+            Cancel
+        </button>
+    </form>
+</div>

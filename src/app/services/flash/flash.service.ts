@@ -41,9 +41,15 @@ export class FlashService {
   }
 
   private clearFlashMessage() {
-    if(this._flash && !this._flash.keepAfterLocationChange) {
-      this._flash = null;
-      this.flash.next(this._flash);
+    if(this._flash) {
+      if(!this._flash.keepAfterLocationChange) {
+        this._flash = null;
+        this.flash.next(this._flash);  
+      }
+      else {
+        // only keep for a single location change
+        this._flash.keepAfterLocationChange = false;
+      }
     }
   }
 }

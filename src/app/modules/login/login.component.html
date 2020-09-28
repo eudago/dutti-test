@@ -1,21 +1,24 @@
-<h2>Login</h2>
 
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-    <label>
-        Username
-        <input type="email" formControlName="username">
-    </label>
+<div class="container">
+    <h2>Login</h2>
 
-    <label>
-        Password
-        <input type="password" formControlName="password">
-    </label>
-
-    <button [disabled]="!loginForm.valid" type="submit">
-        Login
-    </button>
-
-    <button routerLink="/register">
-        Register
-    </button>
-</form>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <label>
+            Username
+            <input type="email" formControlName="username">
+        </label>
+    
+        <label>
+            Password
+            <input type="password" formControlName="password">
+        </label>
+    
+        <button [disabled]="!loginForm.valid" type="submit">
+            Login
+        </button>
+    
+        <button routerLink="/register">
+            Register
+        </button>
+    </form>
+</div>
