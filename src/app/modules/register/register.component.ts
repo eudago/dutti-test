@@ -13,6 +13,7 @@ import { Response } from 'src/app/interfaces/response';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
+  loading = false;
 
   constructor(
     private usersService: UsersService, 
@@ -25,8 +26,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    //TODO: create loading
+    this.loading = true;
     this.usersService.create(this.registerForm.value).then((response: Response) => {
+      this.loading = false;
       if (response.success) {
         this.flashService.success('Registration successful', true);
         this.router.navigate(['/login']);

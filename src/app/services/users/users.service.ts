@@ -16,24 +16,27 @@ export class UsersService {
   }
 
   create(user: User) {
+    //TODO: Promise to Observable
     return new Promise((resolve) => {
-      this.getByUsername(user.username).then((duplicateUser) => {
-        if (duplicateUser !== null) {
-          resolve({ success: false, message: 'Username "' + user.username + '" is already taken' });
-        } else {
-          const users = this.getUsers();
-
-          // assign id
-          var lastUser = users[users.length - 1] || { id: 0 };
-          user.id = lastUser.id + 1;
-
-          // save to local storage
-          users.push(user);
-          this.setUsers(users);
-
-          resolve({ success: true });
-        }
-      })
+      setTimeout(() => {
+        this.getByUsername(user.username).then((duplicateUser) => {
+          if (duplicateUser !== null) {
+            resolve({ success: false, message: 'Username "' + user.username + '" is already taken' });
+          } else {
+            const users = this.getUsers();
+  
+            // assign id
+            var lastUser = users[users.length - 1] || { id: 0 };
+            user.id = lastUser.id + 1;
+  
+            // save to local storage
+            users.push(user);
+            this.setUsers(users);
+  
+            resolve({ success: true });
+          }
+        })  
+      }, 1000);
     })
   }
 
