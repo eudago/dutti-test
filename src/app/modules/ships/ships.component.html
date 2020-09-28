@@ -1,3 +1,5 @@
 <h2>Ships</h2>
 
-<app-starships-list [starships]="shipsPagination?.results"></app-starships-list>
+<app-starships-list [starships]="ships"></app-starships-list>
+
+<button (click)="nextPage()">Más datos</button>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ShipPagination } from 'src/app/interfaces/ship';
+import { Ship, ShipPagination } from 'src/app/interfaces/ship';
 
 import { ShipsService } from './ships.service';
 
@@ -11,6 +11,7 @@ import { ShipsService } from './ships.service';
 })
 export class ShipsComponent implements OnInit {
 
+  ships: Ship[];
   shipsPagination: ShipPagination;
 
   constructor(
@@ -20,6 +21,13 @@ export class ShipsComponent implements OnInit {
 
   ngOnInit(): void {
     this.shipsPagination = this.route.snapshot.data.starships;
+    this.ships = this.shipsPagination.results;
   }
 
+  nextPage() {
+    this.shipsService.getStarships(this.shipsPagination.next).subscribe((shipsP: ShipPagination) => {
+      this.shipsPagination = shipsP;
+      this.ships = this.ships.concat(shipsP.results);
+    });
+  }
 }
