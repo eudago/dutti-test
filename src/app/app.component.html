@@ -1,2 +1,5 @@
 <app-menu *appLogged></app-menu>
+<div *ngIf="flash" [ngClass]="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }">
+    {{flash?.message}}
+</div>
 <router-outlet></router-outlet>

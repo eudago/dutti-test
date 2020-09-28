@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FlashService } from 'src/app/services/flash/flash.service';
 import { UsersService } from 'src/app/services/users/users.service';
+import { Response } from 'src/app/interfaces/response';
 
 @Component({
   selector: 'app-register',
@@ -11,17 +14,27 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService, 
+    private flashService: FlashService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.initRegisterForm();
   }
 
   register() {
-    console.log(this.registerForm.value);
-    this.usersService.create(this.registerForm.value).then((result) => {
-      console.log(result);
-    })
+    //TODO: create loading
+    this.usersService.create(this.registerForm.value).then((response: Response) => {
+      if (response.success) {
+        this.flashService.success('Registration successful', true);
+        this.router.navigate(['/login']);
+      }
+      else {
+        this.flashService.error(response.message, false);
+      }
+    });
   }
 
   private initRegisterForm() {
