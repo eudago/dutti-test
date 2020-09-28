@@ -10,7 +10,8 @@ const routes: Routes = [
     path: 'ships', 
     loadChildren: () => import('./modules/ships/ships.module').then(m => m.ShipsModule),
     canActivate: [ AuthenticatedGuard ]
-  }, 
+  },
+  { path: 'test', loadChildren: () => import('./modules/test/test.module').then(m => m.TestModule) }, 
 ]
 
 @NgModule({
