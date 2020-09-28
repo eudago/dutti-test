@@ -12,10 +12,22 @@
   padding: 0px 20px;
 
   .item {
-    margin: 0px 5px;
+    padding: 24px 16px;
     font-size: 16px;
     line-height: 24px;
     color: black;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .active::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    background-color: black;
+    width: calc(100% - 30px);
+    left: 16px;
+    bottom: 24px;
   }
 }
 
