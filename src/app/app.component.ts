@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Flash } from './interfaces/flash';
+import { Flash, FlashType } from './interfaces/flash';
 import { FlashService } from './services/flash/flash.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   flashSubcription: Subscription;
   flash: Flash;
+  public flashType = FlashType;
 
   constructor(private flashService: FlashService) {
 

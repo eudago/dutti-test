@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Response } from 'src/app/interfaces/response';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { FlashService } from 'src/app/services/flash/flash.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private flashService: FlashService
   ) { }
 
   ngOnInit(): void {
@@ -23,13 +26,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password)
-    .then((response) => {
+    .then((response: Response) => {
       if (response.success) {
         this.authenticationService.setCredentials(this.loginForm.value.username, this.loginForm.value.password);
         this.router.navigate(['/']);  
       }
       else {
-        //TODO: show error message
+        this.flashService.error(response.message, false)
       }
     })
   }
