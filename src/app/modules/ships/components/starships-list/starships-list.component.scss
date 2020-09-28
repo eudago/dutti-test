@@ -1,0 +1,10 @@
+.ships-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .ship {
+    margin: 10px;
+  }
+}
+

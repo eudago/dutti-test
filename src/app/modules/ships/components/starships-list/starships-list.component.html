@@ -1,3 +1,5 @@
-<div *ngFor="let starship of starships">
-    <app-starship [starship]="starship"></app-starship>
+<div class="ships-list" >
+    <div class="ship" *ngFor="let starship of starships">
+        <app-starship [starship]="starship"></app-starship>
+    </div>
 </div>
